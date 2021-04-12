@@ -46,6 +46,9 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 textBox.append("North, ");
                 noPoints++;
+                if (noPoints == 4) {
+
+                }
             }
         });
         Button southbtn = (Button) findViewById(R.id.south);
