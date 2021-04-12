@@ -23,8 +23,8 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
             } else {
                 textBox.setText("");
             }
-            if (savedInstanceState.containsKey(String.valueOf(Constants.SAVED_COUNT))) {
-                noPoints = Constants.SAVED_COUNT;
+            if (savedInstanceState.containsKey(Constants.SAVED_COUNT)) {
+                noPoints = savedInstanceState.getInt(Constants.SAVED_COUNT);
             } else {
                 noPoints = 0;
             }
@@ -69,21 +69,23 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
         TextView textBox = (TextView) findViewById(R.id.textView);
         savedInstanceState.putString(Constants.SAVED_SEQUENCE, textBox.getText().toString());
-        savedInstanceState.putInt(String.valueOf(Constants.SAVED_COUNT), noPoints);
+        savedInstanceState.putInt(Constants.SAVED_COUNT, noPoints);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
         TextView textBox = (TextView) findViewById(R.id.textView);
         if (savedInstanceState.containsKey(Constants.SAVED_SEQUENCE)) {
             textBox.setText(savedInstanceState.getString(Constants.SAVED_SEQUENCE));
         } else {
             textBox.setText("");
         }
-        if (savedInstanceState.containsKey(String.valueOf(Constants.SAVED_COUNT))) {
-            noPoints = Constants.SAVED_COUNT;
+        if (savedInstanceState.containsKey(Constants.SAVED_COUNT)) {
+            noPoints = savedInstanceState.getInt(Constants.SAVED_COUNT);
         } else {
             noPoints = 0;
         }
