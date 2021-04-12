@@ -2,7 +2,9 @@ package ro.pub.cs.systems.eim.Colocviu1_1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
         TextView textBox = (TextView) findViewById(R.id.textView);
 
         if (savedInstanceState != null) {
+            Log.d("TAG", "On saved in created");
             if (savedInstanceState.containsKey(Constants.SAVED_SEQUENCE)) {
                 textBox.setText(savedInstanceState.getString(Constants.SAVED_SEQUENCE));
             } else {
@@ -29,6 +32,7 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
                 noPoints = 0;
             }
         } else {
+            Log.d("TAG", "NOT On saved in created");
             textBox.setText("");
             noPoints = 0;
         }
@@ -41,6 +45,7 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 textBox.append("North, ");
+                noPoints++;
             }
         });
         Button southbtn = (Button) findViewById(R.id.south);
@@ -48,6 +53,7 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 textBox.append("South, ");
+                noPoints++;
             }
         });
         Button eastbtn = (Button) findViewById(R.id.east);
@@ -55,6 +61,7 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 textBox.append("East, ");
+                noPoints++;
             }
         });
         Button westbtn = (Button) findViewById(R.id.west);
@@ -62,6 +69,19 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 textBox.append("West, ");
+                noPoints++;
+            }
+        });
+
+        Button nextAct = (Button) findViewById(R.id.secButton);
+        nextAct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Colocviu1_1MainActivity.this, Colocviu1_1SecondaryActivity.class);
+                myIntent.putExtra("key", "Vlues"); //Optional parameters
+                Colocviu1_1MainActivity.this.startActivity(myIntent);
+                noPoints = 0;
+                textBox.setText("");
             }
         });
 
@@ -89,6 +109,7 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
         } else {
             noPoints = 0;
         }
+        Log.d("TAG", "On restore invoked " + savedInstanceState.getInt(Constants.SAVED_COUNT));
         Toast.makeText(getApplicationContext(),Constants.SAVED_SEQUENCE,Toast.LENGTH_SHORT).show();
     }
 }
