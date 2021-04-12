@@ -24,12 +24,13 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
                 textBox.setText("");
             }
             if (savedInstanceState.containsKey(String.valueOf(Constants.SAVED_COUNT))) {
-                noPoints = Constants.SAVED_COUNT
+                noPoints = Constants.SAVED_COUNT;
             } else {
                 noPoints = 0;
             }
         } else {
             textBox.setText("");
+            noPoints = 0;
         }
 
 
